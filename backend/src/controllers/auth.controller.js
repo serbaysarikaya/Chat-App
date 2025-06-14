@@ -86,7 +86,7 @@ export const logout = (req, res) => {
 
 export const updateProfile = async (req, res) => {
   try {
-    const profilePic = req.body;
+    const { profilePic } = req.body;
     const userId = req.user._id;
 
     if (!profilePic) {
@@ -102,10 +102,8 @@ export const updateProfile = async (req, res) => {
 
     res.status(200).json(updatedUser);
   } catch (error) {
-    console.log("Error in updateProfile controller", error.message);
-    res
-      .status(500)
-      .json({ message: "Internal Server Error", error: error.message });
+    console.log("error in update profile:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 
